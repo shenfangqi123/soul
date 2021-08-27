@@ -31,7 +31,8 @@ cc.Class({
     onLoad () {
         this._material = this.node.getComponent(cc.RenderComponent).getMaterial(0);  
 
-/*
+console.log(this._material);
+
         let sprite = this.node.getComponent(cc.Sprite);
         let spriteFrame = sprite.spriteFrame;
  
@@ -41,13 +42,12 @@ cc.Class({
 
         console.log("width is ",textureWidth," and height is ",textureHeight);
 
-        this.node.on(cc.Node.EventType.TOUCH_MOVE,this.move,this);
+        //this.node.on(cc.Node.EventType.TOUCH_MOVE,this.move,this);
         console.log("width is ",this.node.width," and height is ",this.node.height);
 
-        this._material.setProperty('width',this.node.width);
-        this._material.setProperty('height',this.node.height);
-        this._material.setProperty('center',cc.v2(0.5,0.5));
-*/
+        //this._material.setProperty('width',this.node.width);
+        //this._material.setProperty('height',this.node.height);
+        //this._material.setProperty('center',cc.v2(0.5,0.5));
     },
 
     start () {
