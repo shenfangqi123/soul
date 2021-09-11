@@ -40,5 +40,6 @@
     "live": {
       "enable": false
     }
-  }
+  },
+  "assets-sort-type": "ext"
 }

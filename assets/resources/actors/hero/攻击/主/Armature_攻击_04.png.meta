@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "fb56d25d-db0e-499c-997b-63a7252a2250",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 175,
+  "height": 155,
+  "platformSettings": {},
+  "subMetas": {
+    "Armature_攻击_04": {
+      "ver": "1.0.4",
+      "uuid": "6e93b59b-6b23-48d9-b024-d38006bb5064",
+      "rawTextureUuid": "fb56d25d-db0e-499c-997b-63a7252a2250",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": -4,
+      "trimX": 3,
+      "trimY": 10,
+      "width": 169,
+      "height": 143,
+      "rawWidth": 175,
+      "rawHeight": 155,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
