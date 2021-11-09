@@ -14,6 +14,7 @@ CCEffect %{
         Effect_Ratio: { value: 0.5 }
         Effect_Position: { value: [1, 1] }
         center: { value: [0.5, 0.5] }
+        bullet_center: { value: [0.0, 0.0] }
         Effect_Size: { value: 0.25 }
         Width_Scale: { value: 0.66 }
         texture: { value: white }
@@ -73,27 +74,78 @@ CCProgram fs %{
   uniform GDG_Input {
     vec2 Effect_Position;
     vec2 center;
+    vec2 bullet_center;
     float Effect_Ratio;
     float Effect_Size;
-    float Width_Scale;  
+    float Width_Scale;
+    float sys_time;
+    vec2 resolution;
   };
 
-  void main () {
+  vec4 getTextureColor(sampler2D texture, vec2 v_uv0) {
+    if (v_uv0.x > 1.0 || v_uv0.x < 0.0 || v_uv0.y > 1.0 || v_uv0.y < 0.0) {
+      return vec4(0.0, 0.0, 0.0, 0.0);
+    }
+    return texture(texture, v_uv0);
+  }
+
+  void main_bak () {
     vec4 o = vec4(1, 1, 1, 1);
     vec4 c = v_color * texture2D(texture, v_uv0);
+    vec4 color = texture2D(texture, v_uv0);
 
     float dis = sqrt((v_uv0.x-center.x)*(v_uv0.x-center.x)+(v_uv0.y-center.y)*(v_uv0.y-center.y));
 
-    if( dis > 0.2) {
-        o = vec4(c);
+    if( dis > 0.03) {
+        o = c;
     } else {
         o = vec4(0, 0, 0, 0);
-        //o.a = smoothstep(-0.2, 0.2, dis); 
+        //o.a = smoothstep(-0.2, 0.2, dis);
         o.a = dis * 10.0;
     }
 
+    //o = vec4(0, 0, 0, 0);
+    //o.a = dis * 10.0;
 
     gl_FragColor = o; 
-
   }
+
+  void main () {
+    vec4 o = vec4(1, 1, 1, 1);
+    float minAlpha = 1.0;
+    float dis = 1.0;
+    float intensity = 0.0;
+    float radius_hero = 0.1; 
+    float radius_bullet = 0.06;
+    
+    dis = sqrt(pow(v_uv0.x-center.x, 2.0) + pow(v_uv0.y-center.y, 2.0));
+    vec2 lightPos = vec2(center.x, center.y);
+    intensity += pow(1.0-clamp(dis/radius_hero, 0.0, 1.0), 2.0);
+
+    dis = sqrt(pow(v_uv0.x-bullet_center.x, 2.0) + pow(v_uv0.y-bullet_center.y, 2.0));
+    lightPos = vec2(bullet_center.x, bullet_center.y);
+    intensity += pow(1.0-clamp(dis/radius_bullet, 0.0, 1.0), 2.0);
+
+    minAlpha = 1.0 - intensity;
+    o = vec4(0, 0, 0, 0);
+    o.a = minAlpha;
+
+/*
+    dis = sqrt((v_uv0.x-center.x)*(v_uv0.x-center.x)+(v_uv0.y-center.y)*(v_uv0.y-center.y));
+    if(dis*10.0 < minAlpha) {
+        minAlpha = dis*10.0;
+    }
+
+    dis = sqrt((v_uv0.x-0.55)*(v_uv0.x-0.55)+(v_uv0.y-0.55)*(v_uv0.y-0.55)); 
+    if(dis*10.0 < minAlpha) {
+        minAlpha = dis*10.0;
+    }
+
+    o = vec4(0, 0, 0, 0);
+    o.a = minAlpha;
+*/
+
+    gl_FragColor = o; 
+  }
+
 }%

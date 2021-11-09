@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "sci_attack",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.625,
+  "sample": 8,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "e4c10880-0a63-4b35-be16-98564061d66d"
+            }
+          },
+          {
+            "frame": 0.125,
+            "value": {
+              "__uuid__": "cecfcae8-7ca3-45a7-860c-5734cd611d6a"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "24ecc8bd-d9e8-463a-9af2-8632e52236ed"
+            }
+          },
+          {
+            "frame": 0.375,
+            "value": {
+              "__uuid__": "21a835de-7821-4eaa-a906-15bc2b7ec9d1"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "bfa09d5d-e5de-4ae8-98aa-7263d6f89aff"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
